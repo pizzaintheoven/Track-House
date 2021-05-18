@@ -11,6 +11,10 @@ Built as a challenge to try and expand our knowledge.
 Will be expanded upon in the near future
 
 -Astra
+
+Haha uh oh stinky haha funny 
+-Jacob
+
 ## Developers
 
 - [JacBo](https://www.github.com/Jac-Bo)
