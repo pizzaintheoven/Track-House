@@ -4,8 +4,12 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import passport from 'passport';
 import {Strategy} from 'passport-discord';
+import cors from 'cors'
 import {scopes} from './utils/scope'
+import jsonpath from 'jsonpath'
+import cookieParser from 'express'
 import {routerAuth} from './routes/auth'
+import path from 'path'
 import {routerReview} from './routes/review'
 import mongoose = require("mongoose");
 export const logger = require('logger').createLogger('system.log');
@@ -34,9 +38,19 @@ mongoose
   .catch(err => {console.log("New Error Occurred",err)});
 
 //Passport Stuff Here / Auth
-passport.serializeUser(function (user, done) {
+passport.serializeUser( (user, done) => {
     done(null, user);
-});
+    const dUser = user;
+    let userid = jsonpath.query(user, '$.id')
+    let username = jsonpath.query(user, '$.username')
+    let accessToken = jsonpath.query(user, '$.accessToken')
+    let wantedGuild = jsonpath.query(user, '$.guilds[*].id')
+    if (wantedGuild.includes('708547549824548945')) {
+        console.log("User Is In Specified Server")
+    }
+    
+    
+}); 
 
 passport.deserializeUser(function (obj, done) {
     done(null, obj);
@@ -56,11 +70,16 @@ passport.use(new Strategy({
 ))
 
 //App Using Declarations
-
+app.use(cookieParser())
+app.use(cors())
 app.use(session({
     secret: 'p2r5u8x/A?D(G+KbPeShVmYq3t6v9y$B', // This key is for testing only.
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        maxAge: parseInt(process.env.COOKIE_MAX_AGE)
+    }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -69,8 +88,7 @@ app.use(express.json())
 app.use('/api', routerAuth)
 app.use('/api', routerReview)
 
-
-//--------------------------//
+//--------------------------// 
 
 //Server Listening 
 // [::1] alias for localhost || 127.0.0.1

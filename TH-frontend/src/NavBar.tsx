@@ -1,25 +1,43 @@
 import React, { useState } from 'react'
 import './navbar.css'
 
-let animeID: number = 0
-const dropDowns = [{
-  title: "Example Anime",
+//Manga Lists
+let mangaID: number = 1;
+const dropDownMangas = [{
+  title: "Example Manga 1",
+  linkTo: `/${mangaID}`
+}, 
+{
+  title: "Example Manga 2",
+  linkTo: `/${mangaID}`
+},
+{
+  title: "Example Anime 3",
+  linkTo: `/${mangaID}`
+}]
+
+//Anime Lists
+let animeID: number = 1;
+const dropDownAnimes = [{
+  title: "Example Anime 1",
   linkTo: `/${animeID}`
 }, 
 {
-  title: "Example AnAime",
+  title: "Example Anime 2",
   linkTo: `/${animeID}`
 },
 {
-  title: "Example AnAimA",
+  title: "Example Anime 3",
   linkTo: `/${animeID}`
 }]
+
+//Different Nav Stuff
 const tabs = [{
   title: "Home",
-  linkTo: "/home"
+  linkTo: "/"
 }, {
-  title: "Login",
-  linkTo: "/login"
+  title: "",
+  linkTo: "/"
 }, {
   title: "Dashboard",
   linkTo: "/dashboard"
@@ -33,15 +51,13 @@ function NavBar() {
               <a className="navbar-item" href="#">
                 <img src="" alt="Track House" width="112" height="28"></img>
               </a>
-
               <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
               </a>
             </div>
-
-          <div id="navbarBasicExample" className="navbar-menu">
+          <div id="navbar" className="navbar-menu">
             <div className="navbar-start">
               {tabs.map(tab => {
                     return(
@@ -50,11 +66,24 @@ function NavBar() {
               })}
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">
-                  More
+                  Anime's
                 </a>
 
                 <div className="navbar-dropdown">
-                  {dropDowns.map(link => { 
+                  {dropDownAnimes.map(link => { 
+                    return(
+                      <a className="navbar-item" href={link.linkTo}>{link.title}</a>
+                    )
+                  })}
+                </div>
+                </div>
+                <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">
+                  Anime's
+                </a>
+
+                <div className="navbar-dropdown">
+                  {dropDownMangas.map(link => { 
                     return(
                       <a className="navbar-item" href={link.linkTo}>{link.title}</a>
                     )
@@ -62,21 +91,20 @@ function NavBar() {
                 </div>
               </div>
             </div>
-
-        <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a className="button is-light" href={loginURL}>
-                Log in
-              </a>
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  <a className="button is-primary">
+                    <strong>Sign up</strong>
+                  </a>
+                  <a className="button is-light" href={loginURL}>
+                    Log in
+                  </a>
+                </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     </div>
   )
 }

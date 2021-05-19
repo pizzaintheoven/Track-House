@@ -7,7 +7,6 @@ import {
 //Importing TSX Elements
 import DashBoard from './userDashboard/index'
 import NavBar from './NavBar'
-import Login from './userLogin/login'
 
 export default function App() {
   return (
@@ -17,9 +16,6 @@ export default function App() {
             <Switch>
               <Route path="/dashboard">
                 <DashBoard />
-              </Route>
-              <Route path="/login">
-                <Login />
               </Route>
             </Switch>
         </Router>
