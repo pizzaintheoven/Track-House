@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import session from 'express-session';
 import passport from 'passport';
 import {Strategy} from 'passport-discord';
+import {scopes} from './utils/scope'
 import {routerAuth} from './routes/auth'
 import {routerReview} from './routes/review'
 import mongoose = require("mongoose");
@@ -11,11 +12,11 @@ export const logger = require('logger').createLogger('system.log');
 dotenv.config();
 
 //Env Stuff Here
-const PORT = process.env.PORT;
-const ID = process.env.DISCORD_ID;
-const SECRET = process.env.SECRET;
-const CALLBACK = process.env.CALLBACK;
-const URI = process.env.URI
+const PORT: string = process.env.PORT;
+const ID: string = process.env.DISCORD_ID;
+const SECRET: string = process.env.SECRET;
+const CALLBACK: string = process.env.CALLBACK;
+const URI: string = process.env.URI
 
 logger.setLevel(`${process.env.LEVEL}`);
 //
@@ -40,13 +41,11 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
-
-export const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
-
+console.log(scopes)
 passport.use(new Strategy({
-        clientID: '14125125125',
-        clientSecret: '125125125125',
-        callbackURL: '/f',
+        clientID: ID,
+        clientSecret: SECRET,
+        callbackURL: CALLBACK,
         scope: scopes
     },
     function (accessToken, refreshToken, profile, done) {

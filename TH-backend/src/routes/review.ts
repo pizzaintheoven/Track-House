@@ -6,9 +6,10 @@ export const routerReview = express.Router();
 
 routerReview.post('/createReview', (req, res) => {
     const review: RS = new reviewSchema({
-        title: req.body.title,
+        mediaReview: req.body.mediaReview,
         rating: req.body.rating,
-        reviewerID: req.body.reviewerID
+        reviewerID: req.body.reviewerID,
+        mediaTitle: req.body.mediaTitle
     })
     try {
         review.save()
@@ -18,6 +19,12 @@ routerReview.post('/createReview', (req, res) => {
         res.json(err)
     }
 });
+
+routerReview.get('/', (req, res) => {
+    if (req.body) {
+        return  res.json({"statusCode":404,"error":"Not Found","message":"Not found"})
+    }
+})
 
 routerReview.get('/getReview', (req, res) => {
     const findReview = reviewSchema.find({ contentID: req.body.contentID })

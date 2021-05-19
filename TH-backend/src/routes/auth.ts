@@ -1,7 +1,8 @@
 import * as express from 'express';
-import {logger, scopes} from '../core';
+import {logger} from '../core';
 import passport from 'passport';
 import {Strategy} from 'passport-discord';
+import {scopes} from '../utils/scope'
 export const routerAuth = express.Router();
 
 function checkAuth(req, res, next) {
@@ -9,8 +10,9 @@ function checkAuth(req, res, next) {
     res.send('not logged in :(');
 }
 
-
-routerAuth.get('/login', passport.authenticate('discord', { scope: scopes}));
+console.log(scopes)
+routerAuth.get('/login', passport.authenticate('discord', { scope: scopes})); // Auth Attempt
+console.log(scopes)
 
 routerAuth.get('/callback',
     passport.authenticate('discord', { failureRedirect: '/fail' }), (req, res) => res.redirect('/profile') // auth success

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './navbar.css'
+
 let animeID: number = 0
 const dropDowns = [{
   title: "Example Anime",
@@ -23,6 +24,7 @@ const tabs = [{
   title: "Dashboard",
   linkTo: "/dashboard"
 }]
+const loginURL = "http://localhost:4000/api/login"
 function NavBar() {
   return (
         <div>
@@ -67,7 +69,7 @@ function NavBar() {
               <a className="button is-primary">
                 <strong>Sign up</strong>
               </a>
-              <a className="button is-light">
+              <a className="button is-light" href={loginURL}>
                 Log in
               </a>
             </div>

@@ -7,15 +7,17 @@ import {
 
 export interface RS extends Document {
     title: string,
-    rating: number
+    rating: number,
+    reviewerID: number,
+    animeTitle: string,
 }
 
 const ReviewSchema: Schema = new Schema({
-    title: {
+    mediaTitle: {
         type: String,
         required: true,
         min: 6,
-        max: 255
+        max: 52
     },
     rating: {
         type: Number,
@@ -26,6 +28,12 @@ const ReviewSchema: Schema = new Schema({
     reviewerID: {
         type: String,
         required: true,
+    },
+    mediaReview: {
+        type: String,
+        required: true,
+        min: 6,
+        max: 1256
     }
 });
 export const reviewSchema: Model <RS> = model('AnimeReviews', ReviewSchema);
