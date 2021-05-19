@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import {logger, scopes} from '../core';
 import passport from 'passport';
 import {Strategy} from 'passport-discord';

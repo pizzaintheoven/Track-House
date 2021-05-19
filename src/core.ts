@@ -6,7 +6,7 @@ import passport from 'passport';
 import {Strategy} from 'passport-discord';
 import {routerAuth} from './routes/auth'
 import {routerReview} from './routes/review'
-import * as mongoose from 'mongoose'
+import mongoose = require("mongoose");
 export const logger = require('logger').createLogger('system.log');
 dotenv.config();
 
@@ -30,7 +30,7 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => console.log("Database connected!"))
-  .catch((err) => console.log(err));
+  .catch(err => {console.log("New Error Occurred",err)});
 
 //Passport Stuff Here / Auth
 passport.serializeUser(function (user, done) {
@@ -44,9 +44,9 @@ passport.deserializeUser(function (obj, done) {
 export const scopes = ['identify', 'email', 'guilds', 'guilds.join'];
 
 passport.use(new Strategy({
-        clientID: '',
-        clientSecret: '',
-        callbackURL: '',
+        clientID: '14125125125',
+        clientSecret: '125125125125',
+        callbackURL: '/f',
         scope: scopes
     },
     function (accessToken, refreshToken, profile, done) {
@@ -76,6 +76,6 @@ app.use('/api', routerReview)
 //Server Listening 
 // [::1] alias for localhost || 127.0.0.1
 app.listen(PORT, () => {
-    console.log(`Listening on http://[::1]:${PORT}`);
+    console.log(`Listening on http://localhost:${PORT}`);
     logger.info(`Listening on port ${PORT}`);
 })

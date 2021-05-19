@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import {logger} from '../core';
 import {reviewSchema, RS} from '../models/reviewSchema';
 
@@ -7,9 +7,16 @@ export const routerReview = express.Router();
 routerReview.post('/createReview', (req, res) => {
     const review: RS = new reviewSchema({
         title: req.body.title,
-        rating: req.body.rating
+        rating: req.body.rating,
+        reviewerID: req.body.reviewerID
     })
-    review.save().catch(err => {logger.error(err), res.json({err})})
+    try {
+        review.save()
+        res.json(review)
+    } catch (err) {
+        console.log(err)
+        res.json(err)
+    }
 });
 
 routerReview.get('/getReview', (req, res) => {
@@ -22,9 +29,9 @@ routerReview.get('/getReview', (req, res) => {
     }
     try {
         res.json({findReview})
-    } catch {
+    } catch (err) {
         res.status(500)
-        res.send("Server Error Occurred")
+        res.json(err)
         logger.error("Server Error Occurred: Error on sending json response [/getReview]");
     } 
 })

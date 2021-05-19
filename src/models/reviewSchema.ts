@@ -5,8 +5,6 @@ import {
     Document
 } from 'mongoose';
 
-import logger from 'logger';
-
 export interface RS extends Document {
     title: string,
     rating: number
@@ -26,10 +24,8 @@ const ReviewSchema: Schema = new Schema({
         max: 12
     },
     reviewerID: {
-        type: Number,
-        required: false,
-        min: 16,
-        max: 36
+        type: String,
+        required: true,
     }
 });
 export const reviewSchema: Model <RS> = model('AnimeReviews', ReviewSchema);
