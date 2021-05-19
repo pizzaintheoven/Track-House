@@ -15,4 +15,6 @@ Will be expanded upon in the near future
 - [JacBo](https://www.github.com/Jac-Bo)
 - [ML-Astra](https://github.com/ML-Astra)
 
-  
+## Special Thanks
+
+ - UnaLuz - Helped us find a comma we had missed because we are inept.
