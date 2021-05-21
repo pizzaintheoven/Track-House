@@ -1,1 +1,1 @@
-export const scopes: string[] = ['identify', 'email', 'guilds']
+export const scopes: string[] = ["identify", "email", "guilds"];

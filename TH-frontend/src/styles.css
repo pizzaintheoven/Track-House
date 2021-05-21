@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
+div {
+  font-family: "Source Code Pro", "Courier New", Courier, monospace;
+}
+html {
+  background-color: rgba(88, 57, 224, 0.308) !important;
+  color: black !important;
+}
+.navbar-item:hover {
+  background-color: black !important;
+  color: white !important;
+}
+.navbar-link:hover {
+  background-color: black !important;
+  color: white !important;
+}

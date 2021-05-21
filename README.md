@@ -17,4 +17,4 @@ Will be expanded upon in the near future
 
 ## Special Thanks
 
- - UnaLuz - Helped us find a comma we had missed because we are inept.
+- UnaLuz - Helped us find a comma we had missed because we are inept.

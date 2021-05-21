@@ -3,7 +3,7 @@
     "src/models/reviewSchema.ts",
     "src/routes/auth.ts",
     "src/routes/review.ts",
-    "src/core.ts",
+    "src/core.ts"
   ],
 
   "compilerOptions": {
