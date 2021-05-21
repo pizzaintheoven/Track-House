@@ -24,7 +24,6 @@ const CALLBACK: string = process.env.CALLBACK;
 const URI: string = process.env.URI;
 const SESSION_SECRET: string = process.env.SESSION_SECRET;
 const MAX_COOKIE_AGE: string = process.env.COOKIE_MAX_AGE;
-logger.setLevel(`${process.env.LEVEL}`);
 //
 export const app = express();
 
@@ -65,8 +64,6 @@ passport.serializeUser((user, done) => {
   if (!wantedGuild.includes("708547549824548945")) {
     window.location.assign('http://localhost:3000/invaliduser')
   }
-  localStorage.setItem(userData.userID, "userid");
-  localStorage.setItem(userData.username, "username")
 });
 
 
@@ -114,7 +111,6 @@ app.use(passport.session());
 app.use(express.json());
 app.use("/api", routerAuth);
 app.use("/api", routerReview);
-
 //--------------------------//
 
 //Server Listening

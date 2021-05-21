@@ -15,7 +15,7 @@ console.log(scopes);
 
 routerAuth.get(
   "/callback",
-  passport.authenticate("discord", { failureRedirect: "/fail" }),
+  passport.authenticate("discord", { failureRedirect: "http://localhost:3000/home" }),
   (req, res) => {
     res.redirect("http://localhost:3000/dashboard"), req.session.save;
   } // auth success
@@ -33,3 +33,10 @@ routerAuth.get("/getcookie", function (req, res) {
 routerAuth.get("http://localhost:3000/dashboard", checkAuth, (req, res) => {
   res.send(req.user);
 });
+routerAuth.post('/setcookie/?username/:id', (req, res) => {
+  console.log("Cookie Set")
+  const id = res.cookie("userid", req.params.id, {maxAge: 90000000})
+  const name = res.cookie("username", req.params.username)
+  const cookie = `${id} \n  ${name} `
+  res.json({message: cookie})
+})
