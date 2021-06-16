@@ -3,7 +3,7 @@ import { reviewSchema, RS } from "../models/reviewSchema";
 
 export const routerReview = express.Router();
 
-routerReview.post("/createReview", (req, res) => {
+routerReview.post("/createHabit", (req, res) => {
   const review: RS = new reviewSchema({
     mediaReview: req.body.mediaReview,
     rating: req.body.rating,
@@ -29,8 +29,8 @@ routerReview.get("/", (req, res) => {
   }
 });
 
-routerReview.get("/getReview", (req, res) => {
-  const findReview = reviewSchema.find({ contentID: req.body.contentID });
+routerReview.get("/getHabits", (req, res) => {
+  const findReview = reviewSchema.find({ contentID: req.body.reviewerID });
   if (findReview) {
     res.status(200);
   } else {

@@ -51,6 +51,7 @@ let userData: UserData = {
 };
 
 //Passport Stuff Here / Auth
+
 passport.serializeUser((user, done) => {
   done(null, user);
   const dUser = user;
@@ -114,7 +115,7 @@ app.use("/api", routerReview);
 //--------------------------//
 
 //Server Listening
-// [::1] alias for localhost || 127.0.0.1
+
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
   logger.info(`Listening on port ${PORT}`);
